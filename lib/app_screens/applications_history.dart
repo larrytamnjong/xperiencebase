@@ -23,13 +23,15 @@ class _ApplicationsHistoryState extends State<ApplicationsHistory> {
       _isLoadingHistory = true;
     });
     await Api.userApplicationHistory();
-    setState(() {
-      ApplicationHistoryVariables.trainingApplicationStatus;
-      ApplicationHistoryVariables.trainingApplicationDates;
-      ApplicationHistoryVariables.trainingCompanyNames;
-      ApplicationHistoryVariables.trainingSectorNames;
-      _isLoadingHistory = false;
-    });
+    if (mounted) {
+      setState(() {
+        ApplicationHistoryVariables.trainingApplicationStatus;
+        ApplicationHistoryVariables.trainingApplicationDates;
+        ApplicationHistoryVariables.trainingCompanyNames;
+        ApplicationHistoryVariables.trainingSectorNames;
+        _isLoadingHistory = false;
+      });
+    }
   }
 
   @override
