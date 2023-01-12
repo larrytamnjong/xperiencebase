@@ -42,50 +42,58 @@ class _ForYouState extends State<ForYou> {
   }
 
   void sendForYouApplication(int index) async {
-    displaySnackBar(
-        context: context,
-        content: const Text("Please wait sending request"),
-        backgroundColor: Colors.orange);
-    TrainingApplicationVariables.selectedOptionName =
-        EasyApplyVariables.easyApplyOptionNames[index];
-    TrainingApplicationVariables.selectedSectorName =
-        EasyApplyVariables.easyApplySectorNames[index];
-    TrainingApplicationVariables.selectedCityName =
-        EasyApplyVariables.easyApplyCityNames[index];
-    TrainingApplicationVariables.selectedDistrictName =
-        EasyApplyVariables.easyApplyDistrictNames[index];
-    TrainingApplicationVariables.selectedCompanyName =
-        EasyApplyVariables.easyApplyCompanyNames[index];
-    TrainingApplicationVariables.selectedCompanyId =
-        EasyApplyVariables.easyApplyCompanyIDs[index];
-    TrainingApplicationVariables.school = 'Not specified';
-    TrainingApplicationVariables.startDate = 'Not specified';
-    TrainingApplicationVariables.endDate = 'Not specified';
-    TrainingApplicationVariables.applicationStatus = 'Pending';
+    if (int.parse(UserVariables.accountBalance!) >= 5000) {
+      displaySnackBar(
+          context: context,
+          content: const Text("Please wait sending request"),
+          backgroundColor: Colors.orange);
+      TrainingApplicationVariables.selectedOptionName =
+          EasyApplyVariables.easyApplyOptionNames[index];
+      TrainingApplicationVariables.selectedSectorName =
+          EasyApplyVariables.easyApplySectorNames[index];
+      TrainingApplicationVariables.selectedCityName =
+          EasyApplyVariables.easyApplyCityNames[index];
+      TrainingApplicationVariables.selectedDistrictName =
+          EasyApplyVariables.easyApplyDistrictNames[index];
+      TrainingApplicationVariables.selectedCompanyName =
+          EasyApplyVariables.easyApplyCompanyNames[index];
+      TrainingApplicationVariables.selectedCompanyId =
+          EasyApplyVariables.easyApplyCompanyIDs[index];
+      TrainingApplicationVariables.school = 'Not specified';
+      TrainingApplicationVariables.startDate = 'Not specified';
+      TrainingApplicationVariables.endDate = 'Not specified';
+      TrainingApplicationVariables.applicationStatus = 'Pending';
 
-    var result = await TrainingApplicationApi.saveApplication();
-    if (result == '1') {
-      QuickAlert.show(
-          barrierDismissible: false,
+      var result = await TrainingApplicationApi.saveApplication();
+      if (result == '1') {
+        QuickAlert.show(
+            barrierDismissible: false,
+            confirmBtnColor: kSecondaryColor,
+            context: context,
+            type: QuickAlertType.success,
+            text: 'Application sent successfully, ${UserVariables.name}',
+            onConfirmBtnTap: () {
+              Navigator.pop(context);
+            });
+      } else if (result == '0' || result == null) {
+        QuickAlert.show(
           confirmBtnColor: kSecondaryColor,
           context: context,
-          type: QuickAlertType.success,
-          text: 'Application sent successfully, ${UserVariables.name}',
-          onConfirmBtnTap: () {
-            Navigator.pop(context);
-          });
-    } else if (result == '0' || result == null) {
-      QuickAlert.show(
-        confirmBtnColor: kSecondaryColor,
-        context: context,
-        type: QuickAlertType.error,
-        title: 'Oops...',
-        text: 'Sorry, something went wrong',
-      );
+          type: QuickAlertType.error,
+          title: 'Oops...',
+          text: 'Sorry, something went wrong',
+        );
+      } else {
+        showToast(
+            title: "Failed",
+            body: "Please check your connection or $result",
+            snackBarType: ContentType.failure,
+            context: context);
+      }
     } else {
       showToast(
           title: "Failed",
-          body: "Please check your connection or $result",
+          body: "You need to have at least 5000 XAF before you can apply.",
           snackBarType: ContentType.failure,
           context: context);
     }

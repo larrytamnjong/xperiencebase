@@ -57,50 +57,59 @@ class _ConfirmApplicationState extends State<ConfirmApplication> {
                       text: 'Submit',
                       buttonColor: kSecondaryColor,
                       onPressed: () async {
-                        setState(() {
-                          _isSavingApplication = true;
-                        });
-                        var result =
-                            await TrainingApplicationApi.saveApplication();
-                        if (result == '1') {
-                          QuickAlert.show(
-                              barrierDismissible: false,
+                        if (int.parse(UserVariables.accountBalance!) >= 5000) {
+                          setState(() {
+                            _isSavingApplication = true;
+                          });
+                          var result =
+                              await TrainingApplicationApi.saveApplication();
+                          if (result == '1') {
+                            QuickAlert.show(
+                                barrierDismissible: false,
+                                confirmBtnColor: kSecondaryColor,
+                                context: context,
+                                type: QuickAlertType.success,
+                                text:
+                                    'Application sent successfully, ${UserVariables.name}',
+                                onConfirmBtnTap: () {
+                                  if (!mounted) return;
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MainRoute()),
+                                      (Route<dynamic> route) => false);
+                                });
+                            setState(() {
+                              _isSavingApplication = false;
+                            });
+                          } else if (result == '0' || result == null) {
+                            QuickAlert.show(
                               confirmBtnColor: kSecondaryColor,
                               context: context,
-                              type: QuickAlertType.success,
-                              text:
-                                  'Application sent successfully, ${UserVariables.name}',
-                              onConfirmBtnTap: () {
-                                if (!mounted) return;
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const MainRoute()),
-                                    (Route<dynamic> route) => false);
-                              });
-                          setState(() {
-                            _isSavingApplication = false;
-                          });
-                        } else if (result == '0' || result == null) {
-                          QuickAlert.show(
-                            confirmBtnColor: kSecondaryColor,
-                            context: context,
-                            type: QuickAlertType.error,
-                            title: 'Oops...',
-                            text: 'Sorry, something went wrong',
-                          );
-                          setState(() {
-                            _isSavingApplication = false;
-                          });
+                              type: QuickAlertType.error,
+                              title: 'Oops...',
+                              text: 'Sorry, something went wrong',
+                            );
+                            setState(() {
+                              _isSavingApplication = false;
+                            });
+                          } else {
+                            showToast(
+                                title: "Failed",
+                                body: "Please check your connection or $result",
+                                snackBarType: ContentType.failure,
+                                context: context);
+                            setState(() {
+                              _isSavingApplication = false;
+                            });
+                          }
                         } else {
                           showToast(
                               title: "Failed",
-                              body: "Please check your connection or $result",
+                              body:
+                                  "You need to have at least 5000 XAF before you can apply",
                               snackBarType: ContentType.failure,
                               context: context);
-                          setState(() {
-                            _isSavingApplication = false;
-                          });
                         }
                       },
                     ),
