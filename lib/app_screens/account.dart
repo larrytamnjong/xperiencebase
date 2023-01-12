@@ -114,7 +114,7 @@ class _AccountState extends State<Account> {
 
                   ///Account status
                   const AccountTextField(
-                    text: 'Active',
+                    text: '~Active',
                     fontSize: 15.0,
                     color: kGreenColor,
                     bottom: 5.0,
