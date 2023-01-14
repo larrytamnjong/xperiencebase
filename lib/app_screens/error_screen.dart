@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:xperiencebase/constants/colors.dart';
 import 'package:xperiencebase/widgets_functions/widgets/appbar.dart';
 
-import '../widgets_functions/widgets/padding.dart';
+import 'package:xperiencebase/widgets_functions/widgets/padding.dart';
 
 class ErrorScreen extends StatefulWidget {
   const ErrorScreen({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
                     child: SvgPicture.asset('images/qa_engineer.svg'),
                   ),
                   const Text(
-                    'Oops! It seems like your app is out of date or you do not have internet data. Please try updating your app or buy an internet package. Close all instances of the app and then reload',
+                    'Oops! It seems like your app is out of date, please try updating your app. Close all instances of the app and then reload',
                     style: TextStyle(color: kRedColor),
                     textAlign: TextAlign.center,
                   )

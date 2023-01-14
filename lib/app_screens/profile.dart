@@ -7,6 +7,7 @@ import 'package:xperiencebase/widgets_functions/functions/pagenavigation.dart';
 import 'package:xperiencebase/widgets_functions/functions/variables.dart';
 import 'package:xperiencebase/widgets_functions/widgets/appbar.dart';
 import 'package:xperiencebase/widgets_functions/widgets/padding.dart';
+import 'application_screens/payment_register_screens/payment_home.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -55,7 +56,9 @@ class _ProfileState extends State<Profile> {
                 leadingIcon: Icons.payment,
                 title: 'Payment register',
                 subtitle: 'Pay for a product or service with us',
-                onTap: () {}),
+                onTap: () {
+                  changePage(context: context, page: const PaymentHome());
+                }),
             const TitleBar(heading: 'Support'),
             ProfileListTile(
               leadingIcon: Icons.help,

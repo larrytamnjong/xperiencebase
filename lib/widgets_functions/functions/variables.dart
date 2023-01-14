@@ -83,3 +83,20 @@ class EasyApplyVariables {
   static List<String> easyApplyDistrictNames = [];
   static List<String> easyApplyDateOfPosts = [];
 }
+
+class PaymentVariables {
+  static String? selectedPaymentCompanyName;
+  static String? selectedPaymentCompanyID;
+  static String? selectedPaymentCompanyAmount;
+  static String? selectedPaymentCompanyCharge;
+  static String? selectedProductID;
+  static String? selectedPaymentCompanyTotalAmount;
+  static String? paymentReference;
+  static List<String> paymentCompanyNames = [
+    'Higher Teachers Training College (ENS Bambili)',
+    'HICM'
+  ];
+  static List<String> paymentCompanyIDs = ['2', '3'];
+  static List<String> productIDs = ['2', '3'];
+  static List<String> paymentCompanyAmounts = ['2000', '3000'];
+}

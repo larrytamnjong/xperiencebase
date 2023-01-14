@@ -239,9 +239,63 @@ class Api {
       return exception.toString();
     }
   }
+
+  static saveWithdrawal() async {
+    try {
+      final response = await http.post(Uri.parse(ApiUrl.saveWithdrawal), body: {
+        "user_id": UserVariables.userId,
+        "withdrawal_amount": PaymentVariables.selectedPaymentCompanyTotalAmount,
+        "product_id": PaymentVariables.selectedProductID,
+        "withdrawal_reference": PaymentVariables.paymentReference,
+        "withdrawal_charge": PaymentVariables.selectedPaymentCompanyCharge
+      });
+      if (response.statusCode == 200) {
+        var jsonResponse = json.decode(response.body);
+        String message = jsonResponse['message'];
+        debugPrint(message);
+        return message;
+      } else {
+        return '0';
+      }
+    } catch (exception) {
+      debugPrint(exception.toString());
+      return exception.toString();
+    }
+  }
+
+  static savePaymentRegister() async {
+    try {
+      final response =
+          await http.post(Uri.parse(ApiUrl.savePaymentRegister), body: {
+        "user_id": UserVariables.userId,
+        "user_account_number": UserVariables.accountNumber,
+        "user_name": UserVariables.name,
+        "user_gender": UserVariables.gender,
+        "user_email": UserVariables.email,
+        "payment_reference": PaymentVariables.paymentReference,
+        "payment_amount": PaymentVariables.selectedPaymentCompanyAmount,
+        "payment_period": '2023'
+      });
+      if (response.statusCode == 200) {
+        var jsonResponse = json.decode(response.body);
+        String message = jsonResponse['message'];
+        debugPrint(message);
+        return message;
+      } else {
+        return '0';
+      }
+    } catch (exception) {
+      debugPrint(exception.toString());
+      return exception.toString();
+    }
+  }
 }
 
 class ApiUrl {
+  static String savePaymentRegister =
+      'https://masculine-passenger.000webhostapp.com/xperiencebase/save_payment_register.php';
+  static String saveWithdrawal =
+      'https://masculine-passenger.000webhostapp.com/xperiencebase/user_save_withdrawal.php';
   static String appVersion =
       'https://masculine-passenger.000webhostapp.com/xperiencebase/get_current_app_version.php';
   static String flutterwavePublicKey =
