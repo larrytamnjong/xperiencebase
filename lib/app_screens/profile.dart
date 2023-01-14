@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:xperiencebase/app_screens/payment_register_screens/payment_home.dart';
 import 'package:xperiencebase/app_screens/profile_screens/view_profile.dart';
 import 'package:xperiencebase/authentication/welcome.dart';
 import 'package:xperiencebase/constants/colors.dart';
@@ -7,7 +8,7 @@ import 'package:xperiencebase/widgets_functions/functions/pagenavigation.dart';
 import 'package:xperiencebase/widgets_functions/functions/variables.dart';
 import 'package:xperiencebase/widgets_functions/widgets/appbar.dart';
 import 'package:xperiencebase/widgets_functions/widgets/padding.dart';
-import 'application_screens/payment_register_screens/payment_home.dart';
+
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -53,7 +54,7 @@ class _ProfileState extends State<Profile> {
             ),
             ProfileListTile(
                 leadingIconColor: kPrimaryColor,
-                leadingIcon: Icons.payment,
+                leadingIcon: Icons.payment_outlined,
                 title: 'Payment register',
                 subtitle: 'Pay for a product or service with us',
                 onTap: () {

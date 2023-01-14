@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xperiencebase/app_screens/application_screens/payment_register_screens/payment_history.dart';
+import 'package:xperiencebase/app_screens/payment_register_screens/payment_history.dart';
 import 'package:xperiencebase/constants/colors.dart';
 import 'package:xperiencebase/widgets_functions/functions/pagenavigation.dart';
 import 'package:xperiencebase/widgets_functions/widgets/appbar.dart';
@@ -60,36 +60,36 @@ class _PaymentHomeState extends State<PaymentHome> {
                       showErrorText: _isShowErrorText,
                     ),
                     CustomDropDownButton(
-                        value: PaymentVariables.selectedPaymentCompanyName,
+                        value: PaymentRegisterVariables.selectedCompanyName,
                         hint: "Choose a company",
-                        list: PaymentVariables.paymentCompanyNames,
+                        list: PaymentRegisterVariables.companyNames,
                         onChanged: (value) {
                           setState(() {
                             _isShowErrorText = false;
-                            PaymentVariables.selectedPaymentCompanyName =
+                            PaymentRegisterVariables.selectedCompanyName =
                                 value!;
                             //Get selected company payment ID
-                            PaymentVariables.selectedPaymentCompanyID =
+                            PaymentRegisterVariables.selectedCompanyID =
                                 getItemId(
-                                    list: PaymentVariables.paymentCompanyNames,
-                                    itemName: PaymentVariables
-                                        .selectedPaymentCompanyName,
-                                    idList: PaymentVariables.paymentCompanyIDs);
+                                    list: PaymentRegisterVariables.companyNames,
+                                    itemName: PaymentRegisterVariables
+                                        .selectedCompanyName,
+                                    idList: PaymentRegisterVariables.companyIDs);
                             //Get index of selected company
-                            int index = PaymentVariables.paymentCompanyNames
-                                .indexOf(PaymentVariables
-                                    .selectedPaymentCompanyName!);
+                            int index = PaymentRegisterVariables.companyNames
+                                .indexOf(PaymentRegisterVariables
+                                    .selectedCompanyName!);
                             //set amount to pay
-                            PaymentVariables.selectedPaymentCompanyAmount =
-                                PaymentVariables.paymentCompanyAmounts[index];
+                            PaymentRegisterVariables.selectedPaymentAmount =
+                                PaymentRegisterVariables.paymentAmounts[index];
                             //set product id
-                            PaymentVariables.selectedProductID =
-                                PaymentVariables.productIDs[index];
+                            PaymentRegisterVariables.selectedCompanyProductID =
+                                PaymentRegisterVariables.productIDs[index];
                             //get total amount to pay and total charge
                             calculatePaymentCharge(
-                                PaymentVariables.selectedPaymentCompanyAmount!);
+                                PaymentRegisterVariables.selectedPaymentAmount!);
                             totalAmountToPay = calculateTotalAmountToPay(
-                                PaymentVariables.selectedPaymentCompanyAmount!);
+                                PaymentRegisterVariables.selectedPaymentAmount!);
 
                             //Create payment reference
                             createPaymentReference();
@@ -110,7 +110,7 @@ class _PaymentHomeState extends State<PaymentHome> {
                         text: 'Make payment',
                         buttonColor: kPrimaryColor,
                         onPressed: () async {
-                          if (PaymentVariables.selectedPaymentCompanyName ==
+                          if (PaymentRegisterVariables.selectedCompanyName ==
                               null) {
                             setState(() {
                               _isShowErrorText = true;
@@ -120,8 +120,8 @@ class _PaymentHomeState extends State<PaymentHome> {
                               _isSaving = true;
                             });
                             await getAccountBalance();
-                            if (int.parse(PaymentVariables
-                                    .selectedPaymentCompanyTotalAmount!) >
+                            if (int.parse(PaymentRegisterVariables
+                                    .selectedTotalPaymentAmount!) >
                                 int.parse(UserVariables.accountBalance!)) {
                               showToast(
                                   title: "Failed",

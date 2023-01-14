@@ -84,19 +84,28 @@ class EasyApplyVariables {
   static List<String> easyApplyDateOfPosts = [];
 }
 
-class PaymentVariables {
-  static String? selectedPaymentCompanyName;
-  static String? selectedPaymentCompanyID;
-  static String? selectedPaymentCompanyAmount;
-  static String? selectedPaymentCompanyCharge;
-  static String? selectedProductID;
-  static String? selectedPaymentCompanyTotalAmount;
+class PaymentRegisterVariables {
+  static String? selectedCompanyName;
+  static String? selectedCompanyID;
+  static String? selectedCompanyProductID;
+  static String? selectedPaymentAmount;
+  static String? selectedPaymentCharge;
+  static String? selectedTotalPaymentAmount;
   static String? paymentReference;
-  static List<String> paymentCompanyNames = [
+  static List<String> companyNames = [
     'Higher Teachers Training College (ENS Bambili)',
-    'HICM'
+    'HICM',
+    'COLTECH'
   ];
-  static List<String> paymentCompanyIDs = ['2', '3'];
-  static List<String> productIDs = ['2', '3'];
-  static List<String> paymentCompanyAmounts = ['2000', '3000'];
+  static List<String> companyIDs = ['2', '3','4'];
+  static List<String> productIDs = ['2', '3','4'];
+  static List<String> paymentAmounts = ['2000', '3000','1500'];
+}
+
+class PaymentRegisterHistoryVariables{
+  static List<String> paymentReferences = [];
+  static List<String> paymentAmounts = [];
+  static List<String> paymentPeriods = [];
+  static List<String> companyNames = [];
+  static List<String> paymentTime = [];
 }

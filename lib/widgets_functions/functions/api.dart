@@ -112,8 +112,7 @@ class Api {
         var jsonResponse = json.decode(response.body);
         for (int i = 0; i < jsonResponse.length; i++) {
           DepositVariables.depositAmount.add(jsonResponse[i]['deposit_amount']);
-          DepositVariables.depositReferences
-              .add(jsonResponse[i]['deposit_reference']);
+          DepositVariables.depositReferences.add(jsonResponse[i]['deposit_reference']);
           DepositVariables.depositTime.add(jsonResponse[i]['deposit_time']);
         }
       }
@@ -129,12 +128,9 @@ class Api {
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
         for (int i = 0; i < jsonResponse.length; i++) {
-          WithdrawalVariables.withdrawalAmount
-              .add(jsonResponse[i]['withdrawal_amount']);
-          WithdrawalVariables.withdrawalReferences
-              .add(jsonResponse[i]['withdrawal_reference']);
-          WithdrawalVariables.withdrawalTime
-              .add(jsonResponse[i]['withdrawal_time']);
+          WithdrawalVariables.withdrawalAmount.add(jsonResponse[i]['withdrawal_amount']);
+          WithdrawalVariables.withdrawalReferences.add(jsonResponse[i]['withdrawal_reference']);
+          WithdrawalVariables.withdrawalTime.add(jsonResponse[i]['withdrawal_time']);
         }
       }
     } catch (exception) {
@@ -149,14 +145,10 @@ class Api {
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
         for (int i = 0; i < jsonResponse.length; i++) {
-          ApplicationHistoryVariables.trainingSectorNames
-              .add(jsonResponse[i]['training_sector_name']);
-          ApplicationHistoryVariables.trainingCompanyNames
-              .add(jsonResponse[i]['training_company_name']);
-          ApplicationHistoryVariables.trainingApplicationDates
-              .add(jsonResponse[i]['training_application_date']);
-          ApplicationHistoryVariables.trainingApplicationStatus
-              .add(jsonResponse[i]['training_application_status']);
+          ApplicationHistoryVariables.trainingSectorNames.add(jsonResponse[i]['training_sector_name']);
+          ApplicationHistoryVariables.trainingCompanyNames.add(jsonResponse[i]['training_company_name']);
+          ApplicationHistoryVariables.trainingApplicationDates.add(jsonResponse[i]['training_application_date']);
+          ApplicationHistoryVariables.trainingApplicationStatus.add(jsonResponse[i]['training_application_status']);
         }
       }
     } catch (exception) {
@@ -170,21 +162,14 @@ class Api {
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
         for (int i = 0; i < jsonResponse.length; i++) {
-          EasyApplyVariables.easyApplyCityNames
-              .add(jsonResponse[i]['training_city_name']);
-          EasyApplyVariables.easyApplyCompanyIDs
-              .add(jsonResponse[i]['training_company_id']);
-          EasyApplyVariables.easyApplyCompanyNames
-              .add(jsonResponse[i]['training_company_name']);
-          EasyApplyVariables.easyApplyDistrictNames
-              .add(jsonResponse[i]['training_district_name']);
+          EasyApplyVariables.easyApplyCityNames.add(jsonResponse[i]['training_city_name']);
+          EasyApplyVariables.easyApplyCompanyIDs.add(jsonResponse[i]['training_company_id']);
+          EasyApplyVariables.easyApplyCompanyNames.add(jsonResponse[i]['training_company_name']);
+          EasyApplyVariables.easyApplyDistrictNames.add(jsonResponse[i]['training_district_name']);
           EasyApplyVariables.easyApplyIDs.add(jsonResponse[i]['easy_apply_id']);
-          EasyApplyVariables.easyApplyOptionNames
-              .add(jsonResponse[i]['training_option_name']);
-          EasyApplyVariables.easyApplySectorNames
-              .add(jsonResponse[i]['training_sector_name']);
-          EasyApplyVariables.easyApplyDateOfPosts
-              .add(jsonResponse[i]['date_of_post']);
+          EasyApplyVariables.easyApplyOptionNames.add(jsonResponse[i]['training_option_name']);
+          EasyApplyVariables.easyApplySectorNames.add(jsonResponse[i]['training_sector_name']);
+          EasyApplyVariables.easyApplyDateOfPosts.add(jsonResponse[i]['date_of_post']);
         }
       }
     } catch (exception) {
@@ -244,10 +229,10 @@ class Api {
     try {
       final response = await http.post(Uri.parse(ApiUrl.saveWithdrawal), body: {
         "user_id": UserVariables.userId,
-        "withdrawal_amount": PaymentVariables.selectedPaymentCompanyTotalAmount,
-        "product_id": PaymentVariables.selectedProductID,
-        "withdrawal_reference": PaymentVariables.paymentReference,
-        "withdrawal_charge": PaymentVariables.selectedPaymentCompanyCharge
+        "withdrawal_amount": PaymentRegisterVariables.selectedTotalPaymentAmount,
+        "product_id": PaymentRegisterVariables.selectedCompanyProductID,
+        "withdrawal_reference": PaymentRegisterVariables.paymentReference,
+        "withdrawal_charge": PaymentRegisterVariables.selectedPaymentCharge
       });
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
@@ -272,9 +257,12 @@ class Api {
         "user_name": UserVariables.name,
         "user_gender": UserVariables.gender,
         "user_email": UserVariables.email,
-        "payment_reference": PaymentVariables.paymentReference,
-        "payment_amount": PaymentVariables.selectedPaymentCompanyAmount,
-        "payment_period": '2023'
+        "payment_reference": PaymentRegisterVariables.paymentReference,
+        "payment_amount": PaymentRegisterVariables.selectedPaymentAmount,
+        "payment_period": '2023',
+        "company_name": PaymentRegisterVariables.selectedCompanyName
+
+
       });
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
@@ -289,9 +277,30 @@ class Api {
       return exception.toString();
     }
   }
+  static getPaymentRegisterHistory() async {
+    try {
+      final response = await http.post(Uri.parse(ApiUrl.paymentRegisterHistory),body: {
+        "user_id": UserVariables.userId,
+      });
+      if (response.statusCode == 200) {
+        var jsonResponse = json.decode(response.body);
+        for (int i = 0; i < jsonResponse.length; i++) {
+          PaymentRegisterHistoryVariables.companyNames.add(jsonResponse[i]['company_name']);
+          PaymentRegisterHistoryVariables.paymentAmounts.add(jsonResponse[i]['payment_amount']);
+          PaymentRegisterHistoryVariables.paymentReferences.add(jsonResponse[i]['payment_reference']);
+          PaymentRegisterHistoryVariables.paymentPeriods.add(jsonResponse[i]['payment_period']);
+          PaymentRegisterHistoryVariables.paymentTime.add(jsonResponse[i]['payment_time']);
+        }
+      }
+    } catch (exception) {
+      return exception.toString();
+    }
+  }
 }
 
 class ApiUrl {
+  static String paymentRegisterHistory =
+      'https://masculine-passenger.000webhostapp.com/xperiencebase/user_get_payment_register_history.php';
   static String savePaymentRegister =
       'https://masculine-passenger.000webhostapp.com/xperiencebase/save_payment_register.php';
   static String saveWithdrawal =

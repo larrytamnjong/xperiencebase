@@ -28,17 +28,19 @@ class _ForYouState extends State<ForYou> {
       _isLoadingEasyApply = true;
     });
     await Api.getEasyApplyPosts();
-    setState(() {
-      _isLoadingEasyApply = false;
-      EasyApplyVariables.easyApplyDateOfPosts;
-      EasyApplyVariables.easyApplySectorNames;
-      EasyApplyVariables.easyApplyOptionNames;
-      EasyApplyVariables.easyApplyIDs;
-      EasyApplyVariables.easyApplyDistrictNames;
-      EasyApplyVariables.easyApplyCityNames;
-      EasyApplyVariables.easyApplyCompanyNames;
-      EasyApplyVariables.easyApplyCompanyIDs;
-    });
+    if (mounted) {
+      setState(() {
+        _isLoadingEasyApply = false;
+        EasyApplyVariables.easyApplyDateOfPosts;
+        EasyApplyVariables.easyApplySectorNames;
+        EasyApplyVariables.easyApplyOptionNames;
+        EasyApplyVariables.easyApplyIDs;
+        EasyApplyVariables.easyApplyDistrictNames;
+        EasyApplyVariables.easyApplyCityNames;
+        EasyApplyVariables.easyApplyCompanyNames;
+        EasyApplyVariables.easyApplyCompanyIDs;
+      });
+    }
   }
 
   void sendForYouApplication(int index) async {
@@ -47,18 +49,12 @@ class _ForYouState extends State<ForYou> {
           context: context,
           content: const Text("Please wait sending request"),
           backgroundColor: Colors.orange);
-      TrainingApplicationVariables.selectedOptionName =
-          EasyApplyVariables.easyApplyOptionNames[index];
-      TrainingApplicationVariables.selectedSectorName =
-          EasyApplyVariables.easyApplySectorNames[index];
-      TrainingApplicationVariables.selectedCityName =
-          EasyApplyVariables.easyApplyCityNames[index];
-      TrainingApplicationVariables.selectedDistrictName =
-          EasyApplyVariables.easyApplyDistrictNames[index];
-      TrainingApplicationVariables.selectedCompanyName =
-          EasyApplyVariables.easyApplyCompanyNames[index];
-      TrainingApplicationVariables.selectedCompanyId =
-          EasyApplyVariables.easyApplyCompanyIDs[index];
+      TrainingApplicationVariables.selectedOptionName = EasyApplyVariables.easyApplyOptionNames[index];
+      TrainingApplicationVariables.selectedSectorName = EasyApplyVariables.easyApplySectorNames[index];
+      TrainingApplicationVariables.selectedCityName = EasyApplyVariables.easyApplyCityNames[index];
+      TrainingApplicationVariables.selectedDistrictName = EasyApplyVariables.easyApplyDistrictNames[index];
+      TrainingApplicationVariables.selectedCompanyName = EasyApplyVariables.easyApplyCompanyNames[index];
+      TrainingApplicationVariables.selectedCompanyId = EasyApplyVariables.easyApplyCompanyIDs[index];
       TrainingApplicationVariables.school = 'Not specified';
       TrainingApplicationVariables.startDate = 'Not specified';
       TrainingApplicationVariables.endDate = 'Not specified';

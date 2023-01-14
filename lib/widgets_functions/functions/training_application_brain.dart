@@ -54,7 +54,17 @@ void clearForYouList() {
   EasyApplyVariables.easyApplyCompanyNames.clear();
   EasyApplyVariables.easyApplyCompanyIDs.clear();
 }
+void clearCompanyList(){
+  //TODO: Implement this once we are getting company list from saver
+}
 
+void clearPaymentHistoryRegisterList(){
+  PaymentRegisterHistoryVariables.paymentTime.clear();
+  PaymentRegisterHistoryVariables.paymentPeriods.clear();
+  PaymentRegisterHistoryVariables.paymentReferences.clear();
+  PaymentRegisterHistoryVariables.paymentAmounts.clear();
+  PaymentRegisterHistoryVariables.companyNames.clear();
+}
 ///Function to get Id of selected item given item list and item ids
 String getItemId(
     {required List list, required String? itemName, required List idList}) {
