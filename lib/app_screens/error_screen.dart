@@ -29,7 +29,7 @@ class _ErrorScreenState extends State<ErrorScreen> {
                     child: SvgPicture.asset('images/qa_engineer.svg'),
                   ),
                   const Text(
-                    'Oops! It seems like your app is out of date, please try updating your app. Close all instances of the app and then reload',
+                    'Oops! It seems like your app is out of date or you are offline, please try updating your app or connecting to active internet connection. Close all instances of the app and then reload',
                     style: TextStyle(color: kRedColor),
                     textAlign: TextAlign.center,
                   )

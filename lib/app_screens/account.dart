@@ -11,7 +11,6 @@ import 'package:xperiencebase/widgets_functions/functions/snackbar_menus.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:xperiencebase/widgets_functions/functions/api.dart';
 import 'package:xperiencebase/widgets_functions/functions/account_brain.dart';
-
 import 'package:xperiencebase/widgets_functions/functions/pagenavigation.dart';
 import 'package:xperiencebase/widgets_functions/widgets/deposit_widget.dart';
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_toastr/flutter_toastr.dart';
+import 'package:xperiencebase/app_screens/payment_register_screens/view_pdf_receipt.dart';
 import 'package:xperiencebase/constants/colors.dart';
 import 'package:xperiencebase/widgets_functions/functions/training_application_brain.dart';
 import 'package:xperiencebase/widgets_functions/functions/variables.dart';
@@ -6,6 +8,8 @@ import 'package:xperiencebase/widgets_functions/widgets/appbar.dart';
 import 'package:xperiencebase/widgets_functions/widgets/loading.dart';
 import 'package:xperiencebase/widgets_functions/widgets/padding.dart';
 import 'package:xperiencebase/widgets_functions/functions/api.dart';
+import 'package:xperiencebase/widgets_functions/functions/pdf_maker.dart';
+import 'package:xperiencebase/widgets_functions/functions/pagenavigation.dart';
 
 class PaymentHistory extends StatefulWidget {
   const PaymentHistory({Key? key}) : super(key: key);
@@ -45,7 +49,7 @@ class _PaymentHistoryState extends State<PaymentHistory> {
   }
   @override
   Widget build(BuildContext context) {
-    return _isLoadingRegisterHistory ? const LoadingScreen(waitingText: 'Getting transactions'): Scaffold(
+    return _isLoadingRegisterHistory ? const LoadingScreen(waitingText: 'Loading transactions'): Scaffold(
       appBar: const CustomAppBar(title: 'Payment history'),
       body: CustomPadding(
         top: 10.0,
@@ -64,7 +68,22 @@ class _PaymentHistoryState extends State<PaymentHistory> {
               trailing: Text('${PaymentRegisterHistoryVariables.paymentAmounts[index]} XAF', style: const TextStyle(color: kGreenColor),),
               enableFeedback: true,
               onTap: (){
+                FlutterToastr.show("Please wait for 5 seconds..", context, duration: FlutterToastr.lengthLong, position:  FlutterToastr.center);
+            generatePdfReceipt(
+                paymentReference: PaymentRegisterHistoryVariables.paymentReferences[index],
+                clientName: UserVariables.name!,
+                clientPhone: UserVariables.phone!,
+                paymentAmount: PaymentRegisterVariables.paymentAmounts[index],
+                accountCredited: PaymentRegisterHistoryVariables.companyNames[index],
+                timeOfPayment: PaymentRegisterHistoryVariables.paymentTime[index],
+                clientEmail: UserVariables.email!,
+                accountNumber: UserVariables.accountNumber!
+            );
 
+                Future.delayed(const Duration(seconds: 2),
+                        () {
+                      changePage(context: context, page: const ViewPdfReceipt());
+                    });
               },
             );
           },

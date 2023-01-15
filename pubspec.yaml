@@ -51,12 +51,11 @@ dependencies:
   flutterwave_standard: ^1.0.6
   animated_splash_screen: ^1.3.0
   shared_preferences: ^2.0.15
-
-
-
-
-
-
+  pdf: ^3.8.4
+  pdf_viewer_plugin: ^2.0.1
+  path_provider: ^2.0.11
+  open_file: ^3.2.1
+  flutter_toastr: ^1.0.3
 
 
 dev_dependencies:
@@ -84,7 +83,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
-  #   - images/a_dot_ham.jpeg
+    - assets/qr_code.png
+    - assets/Roboto-Regular.ttf
+    - assets/logo.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

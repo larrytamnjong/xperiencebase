@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       appBar: const CustomAppBar(title: 'Feeling great today..'),
       body: AnimatedSplashScreen(
-        splashIconSize: 150.0,
+        splashIconSize: 90.0,
         splash: 'images/icon.png',
         nextScreen: nextRouteScreen,
         splashTransition: SplashTransition.slideTransition,
