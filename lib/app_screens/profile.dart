@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:xperiencebase/app_screens/payment_register_screens/payment_home.dart';
 import 'package:xperiencebase/app_screens/profile_screens/view_profile.dart';
 import 'package:xperiencebase/authentication/welcome.dart';
@@ -8,6 +9,8 @@ import 'package:xperiencebase/widgets_functions/functions/pagenavigation.dart';
 import 'package:xperiencebase/widgets_functions/functions/variables.dart';
 import 'package:xperiencebase/widgets_functions/widgets/appbar.dart';
 import 'package:xperiencebase/widgets_functions/widgets/padding.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:xperiencebase/widgets_functions/functions/snackbar_menus.dart';
 
 
 class Profile extends StatefulWidget {
@@ -81,7 +84,22 @@ class _ProfileState extends State<Profile> {
                 leadingIcon: Icons.policy_outlined,
                 title: 'Terms and conditions',
                 subtitle: 'Get to understand our policy',
-                onTap: () {}),
+                onTap: () async{
+                    const url = 'https://masculine-passenger.000webhostapp.com/privacy%20policy/privacy%20policy.html';
+                    if (!await launchUrl(Uri.parse(url),
+                        mode: LaunchMode.externalApplication)) {
+                      showToast(
+                        title: 'Oops',
+                        body:
+                        "We encountered an error please visit $url for Our Terms and Conditions or Privacy Policy",
+                        snackBarType: ContentType.help,
+                        context: context,
+                      );
+                    } else {
+                      //Do something here if launch is successful
+                    }
+
+                }),
             ProfileListTile(
                 leadingIconColor: kRedColor,
                 leadingIcon: Icons.power_settings_new_outlined,

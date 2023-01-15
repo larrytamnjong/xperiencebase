@@ -57,7 +57,7 @@ class Welcome extends StatelessWidget {
                       const Disclaimer(
                         text:
                             'By clicking either Sign in or Registration you confirm that you have read, understood, and agree with Our Privacy Policy and Terms and Conditions of Xperience Base',
-                        url: 'https://flutter.io',
+                        url: 'https://masculine-passenger.000webhostapp.com/privacy%20policy/privacy%20policy.html',
                       ),
                     ],
                   ),
