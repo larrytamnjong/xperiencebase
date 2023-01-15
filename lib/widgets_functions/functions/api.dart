@@ -289,7 +289,9 @@ class Api {
           PaymentRegisterHistoryVariables.paymentAmounts.add(jsonResponse[i]['payment_amount']);
           PaymentRegisterHistoryVariables.paymentReferences.add(jsonResponse[i]['payment_reference']);
           PaymentRegisterHistoryVariables.paymentPeriods.add(jsonResponse[i]['payment_period']);
-          PaymentRegisterHistoryVariables.paymentTime.add(jsonResponse[i]['payment_time']);
+          PaymentRegisterHistoryVariables.paymentTimes.add(jsonResponse[i]['payment_time']);
+          PaymentRegisterHistoryVariables.paymentIDs.add(jsonResponse[i]['payment_id']);
+
         }
       }
     } catch (exception) {

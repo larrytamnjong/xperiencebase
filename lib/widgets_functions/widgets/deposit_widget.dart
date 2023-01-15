@@ -38,7 +38,7 @@ class _DepositWidgetState extends State<DepositWidget> {
                 const FormHeader(
                     heading: "How much do you want to deposit?",
                     body:
-                        'Please enter the amount you wish to deposit. Our payment processors or mobile money partners might charge you a deposit fee.'),
+                        'Please enter the amount you wish to deposit. Return to the app once you confirm payment you will be automatically redirected.'),
                 UnderlineTextFormField(
                   labelText: 'Amount XAF',
                   validator: requiredValidator,

@@ -21,7 +21,7 @@ flutterwavePaymentInitialization(BuildContext context) async {
     context: context,
     publicKey: DepositVariables.flutterwavePublicKey,
     currency: "XAF",
-    redirectUrl: "https://www.google.com/",
+    redirectUrl: "https://flutterwave.com/us/",
     txRef: DepositVariables.depositReference!,
     amount: DepositVariables.amountToDeposit,
     customer: customer,

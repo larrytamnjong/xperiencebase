@@ -55,11 +55,11 @@ void clearForYouList() {
   EasyApplyVariables.easyApplyCompanyIDs.clear();
 }
 void clearCompanyList(){
-  //TODO: Implement this once we are getting company list from saver
+  //TODO: Implement this once we are getting company list from server
 }
 
 void clearPaymentHistoryRegisterList(){
-  PaymentRegisterHistoryVariables.paymentTime.clear();
+  PaymentRegisterHistoryVariables.paymentTimes.clear();
   PaymentRegisterHistoryVariables.paymentPeriods.clear();
   PaymentRegisterHistoryVariables.paymentReferences.clear();
   PaymentRegisterHistoryVariables.paymentAmounts.clear();

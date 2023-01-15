@@ -107,5 +107,6 @@ class PaymentRegisterHistoryVariables{
   static List<String> paymentAmounts = [];
   static List<String> paymentPeriods = [];
   static List<String> companyNames = [];
-  static List<String> paymentTime = [];
+  static List<String> paymentTimes = [];
+  static List<String> paymentIDs = [];
 }

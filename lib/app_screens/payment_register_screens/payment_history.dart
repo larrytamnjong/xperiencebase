@@ -31,7 +31,7 @@ class _PaymentHistoryState extends State<PaymentHistory> {
         PaymentRegisterHistoryVariables.paymentAmounts;
         PaymentRegisterHistoryVariables.paymentReferences;
         PaymentRegisterHistoryVariables.paymentPeriods;
-        PaymentRegisterHistoryVariables.paymentTime;
+        PaymentRegisterHistoryVariables.paymentTimes;
         _isLoadingRegisterHistory = false;
       });
     }
@@ -64,7 +64,7 @@ class _PaymentHistoryState extends State<PaymentHistory> {
               iconColor: kPrimaryColor,
               leading: const Icon(Icons.account_balance),
               title: Text(PaymentRegisterHistoryVariables.companyNames[index]),
-              subtitle: Text(PaymentRegisterHistoryVariables.paymentTime[index]),
+              subtitle: Text(PaymentRegisterHistoryVariables.paymentTimes[index]),
               trailing: Text('${PaymentRegisterHistoryVariables.paymentAmounts[index]} XAF', style: const TextStyle(color: kGreenColor),),
               enableFeedback: true,
               onTap: (){
@@ -75,9 +75,10 @@ class _PaymentHistoryState extends State<PaymentHistory> {
                 clientPhone: UserVariables.phone!,
                 paymentAmount: PaymentRegisterVariables.paymentAmounts[index],
                 accountCredited: PaymentRegisterHistoryVariables.companyNames[index],
-                timeOfPayment: PaymentRegisterHistoryVariables.paymentTime[index],
+                timeOfPayment: PaymentRegisterHistoryVariables.paymentTimes[index],
                 clientEmail: UserVariables.email!,
-                accountNumber: UserVariables.accountNumber!
+                accountNumber: UserVariables.accountNumber!,
+                paymentID: PaymentRegisterHistoryVariables.paymentIDs[index],
             );
 
                 Future.delayed(const Duration(seconds: 2),

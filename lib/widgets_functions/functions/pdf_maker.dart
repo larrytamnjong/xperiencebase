@@ -16,6 +16,7 @@ Future<void> generatePdfReceipt(
       required String accountCredited,
       required String clientEmail,
       required String accountNumber,
+      required String paymentID,
       //required String serviceFee,
      // required String servicePaidFor,
       required String timeOfPayment}) async {
@@ -63,7 +64,7 @@ Future<void> generatePdfReceipt(
             Row(children: [
               Text('Receipt Number'),
               Spacer(flex: 100),
-              Text(paymentReference),
+              Text('$paymentReference #$paymentID '),
             ]),
 
             Row(children: [
@@ -183,11 +184,14 @@ Future<void> generatePdfReceipt(
               Text(paymentReference),
             ]),
             SizedBox(height: 60),
+            Text('Please report any inconsistencies in this receipt to the contact above.'),
             Container(
-              height: 150,
-              width: 150,
+              height: 130,
+              width: 130,
               child: Image(qrCode),
             ),
+
+
           ],
         ),
       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:xperiencebase/authentication/splash_screen.dart';
-import 'app_screens/payment_register_screens/payment_history.dart';
 import 'constants/colors.dart';
 void main() => runApp(const MyApp());
 
