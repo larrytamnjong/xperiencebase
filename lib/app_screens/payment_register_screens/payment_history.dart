@@ -32,6 +32,7 @@ class _PaymentHistoryState extends State<PaymentHistory> {
         PaymentRegisterHistoryVariables.paymentReferences;
         PaymentRegisterHistoryVariables.paymentPeriods;
         PaymentRegisterHistoryVariables.paymentTimes;
+        PaymentRegisterHistoryVariables.paymentIDs;
         _isLoadingRegisterHistory = false;
       });
     }
@@ -68,12 +69,12 @@ class _PaymentHistoryState extends State<PaymentHistory> {
               trailing: Text('${PaymentRegisterHistoryVariables.paymentAmounts[index]} XAF', style: const TextStyle(color: kGreenColor),),
               enableFeedback: true,
               onTap: (){
-                FlutterToastr.show("Please wait for 5 seconds..", context, duration: FlutterToastr.lengthLong, position:  FlutterToastr.center);
+                FlutterToastr.show("Please wait for 2 seconds..", context, duration: FlutterToastr.lengthLong, position:  FlutterToastr.center);
             generatePdfReceipt(
                 paymentReference: PaymentRegisterHistoryVariables.paymentReferences[index],
                 clientName: UserVariables.name!,
                 clientPhone: UserVariables.phone!,
-                paymentAmount: PaymentRegisterVariables.paymentAmounts[index],
+                paymentAmount: PaymentRegisterHistoryVariables.paymentAmounts[index],
                 accountCredited: PaymentRegisterHistoryVariables.companyNames[index],
                 timeOfPayment: PaymentRegisterHistoryVariables.paymentTimes[index],
                 clientEmail: UserVariables.email!,

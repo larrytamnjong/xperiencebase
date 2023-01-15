@@ -64,6 +64,7 @@ void clearPaymentHistoryRegisterList(){
   PaymentRegisterHistoryVariables.paymentReferences.clear();
   PaymentRegisterHistoryVariables.paymentAmounts.clear();
   PaymentRegisterHistoryVariables.companyNames.clear();
+  PaymentRegisterHistoryVariables.paymentIDs.clear();
 }
 ///Function to get Id of selected item given item list and item ids
 String getItemId(
