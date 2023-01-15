@@ -184,7 +184,7 @@ Future<void> generatePdfReceipt(
               Text(paymentReference),
             ]),
             SizedBox(height: 60),
-            Text('Please report any inconsistencies in this receipt to the contact above.'),
+            Text('Please contact support on WhatsApp only for any inconsistencies in this receipt.'),
             Container(
               height: 130,
               width: 130,
