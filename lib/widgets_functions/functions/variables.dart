@@ -95,11 +95,11 @@ class PaymentRegisterVariables {
   static List<String> companyNames = [
     'Higher Teachers Training College (ENS Bambili)',
     'HICM',
-    'COLTECH'
+
   ];
-  static List<String> companyIDs = ['2', '3','4'];
-  static List<String> productIDs = ['2', '3','4'];
-  static List<String> paymentAmounts = ['2000', '3000','1500'];
+  static List<String> companyIDs = ['2', '3'];
+  static List<String> productIDs = ['2', '3'];
+  static List<String> paymentAmounts = ['2000', '1500'];
 }
 
 class PaymentRegisterHistoryVariables{
