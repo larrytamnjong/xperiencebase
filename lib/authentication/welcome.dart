@@ -18,16 +18,19 @@ class Welcome extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image(
-                image: const AssetImage('images/logo.jpeg'),
-                width: MediaQuery.of(context).size.width,
+            const  Image(
+               image:  AssetImage('images/logo.jpeg'),
+               width: 300.0,
+               height: 300.0,
+               // width: MediaQuery.of(context).size.width,
               ),
               const SizedBox(
                 child: Text(
                   'We believe in building trust',
                   style: TextStyle(
-                    fontFamily: 'DancingScript',
+                    fontFamily: 'Lora',
                     fontSize: 20.0,
+                    fontWeight: FontWeight.w500
                   ),
                   textAlign: TextAlign.center,
                 ),
