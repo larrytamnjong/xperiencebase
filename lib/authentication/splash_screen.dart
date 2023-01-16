@@ -4,9 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:xperiencebase/app_screens/main_route.dart';
 import 'package:xperiencebase/authentication/welcome.dart';
 import 'package:xperiencebase/widgets_functions/functions/variables.dart';
-import 'package:xperiencebase/constants/colors.dart';
-
-import '../widgets_functions/widgets/appbar.dart';
+import 'package:xperiencebase/widgets_functions/widgets/appbar.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
