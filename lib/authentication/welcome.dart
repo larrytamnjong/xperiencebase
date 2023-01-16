@@ -20,7 +20,7 @@ class Welcome extends StatelessWidget {
             children: [
             const  Image(
                image:  AssetImage('images/logo.jpeg'),
-               width: 300.0,
+               width: 306.0,
                height: 300.0,
                // width: MediaQuery.of(context).size.width,
               ),

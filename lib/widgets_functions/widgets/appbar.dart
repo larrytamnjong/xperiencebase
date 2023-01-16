@@ -8,13 +8,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final bool? automaticallyImplyLeading;
   final bool? centerTitle;
-
+  final String? fontFamily;
   const CustomAppBar(
       {Key? key,
       required this.title,
       this.actions,
       this.automaticallyImplyLeading,
-      this.centerTitle})
+      this.centerTitle, this.fontFamily})
       : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       title: Text(
         title,
-        style: const TextStyle(color: Colors.black, fontSize: 21.0),
+        style:  TextStyle(color: Colors.black, fontSize: 21.0, fontFamily: '$fontFamily'),
       ),
       elevation: 0,
       backgroundColor: kWhiteColor,

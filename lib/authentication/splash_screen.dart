@@ -6,6 +6,8 @@ import 'package:xperiencebase/authentication/welcome.dart';
 import 'package:xperiencebase/widgets_functions/functions/variables.dart';
 import 'package:xperiencebase/constants/colors.dart';
 
+import '../widgets_functions/widgets/appbar.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -46,14 +48,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Feeling great today..',
-          style: TextStyle(fontFamily: 'DancingScript', color: kBlackColor),
-        ),
-        backgroundColor: kWhiteColor,
-        elevation: 0,
-      ),
+      appBar: const CustomAppBar(
+          title: 'Feeling great today..', fontFamily: 'DancingScript'),
       body: AnimatedSplashScreen(
         splashIconSize: 90.0,
         splash: 'images/icon.png',
