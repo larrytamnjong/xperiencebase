@@ -53,24 +53,28 @@ class Api {
         UserVariables.birthdate = jsonResponse['user_birthdate'];
         UserVariables.creationDate = jsonResponse['creation_date'];
 
-        ///save user details in shared preference
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('userId', jsonResponse['user_id']);
-        await prefs.setString('name', jsonResponse['user_name']);
-        await prefs.setString(
-            'accountNumber', jsonResponse['user_account_number']);
-        await prefs.setString('phone', jsonResponse['user_phone']);
-        await prefs.setString('email', jsonResponse['user_email']);
-        await prefs.setString('gender', jsonResponse['user_gender']);
-        await prefs.setString('birthdate', jsonResponse['user_birthdate']);
-        await prefs.setString('creationDate', jsonResponse['creation_date']);
-
+        ///save user details in shared preference if user exist
+        if(jsonResponse['user_name']!= null) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('userId', jsonResponse['user_id']);
+          await prefs.setString('name', jsonResponse['user_name']);
+          await prefs.setString(
+              'accountNumber', jsonResponse['user_account_number']);
+          await prefs.setString('phone', jsonResponse['user_phone']);
+          await prefs.setString('email', jsonResponse['user_email']);
+          await prefs.setString('gender', jsonResponse['user_gender']);
+          await prefs.setString('birthdate', jsonResponse['user_birthdate']);
+          await prefs.setString('creationDate', jsonResponse['creation_date']);
+        }
         return message;
       } else {
+
         return null;
       }
     } catch (exception) {
+
       return exception.toString();
+
     }
   }
 

@@ -91,50 +91,49 @@ class _LoginState extends State<Login> {
                               UserVariables.password = password.text;
                               UserVariables.phone = phone.text;
                               var result = await Api.userLogin();
-                              switch (result) {
-                                case '1':
+                                if(result == '1') {
                                   if (!mounted) return;
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const MainRoute()),
-                                      (Route<dynamic> route) => false);
+                                          const MainRoute()),
+                                          (Route<dynamic> route) => false);
                                   setState(() {
                                     stopLoading();
                                   });
                                   displaySnackBar(
                                       context: context,
                                       content:
-                                          Text("Welcome ${UserVariables.name}"),
+                                      Text("Welcome ${UserVariables.name}"),
                                       backgroundColor: kPrimaryColor);
-                                  break;
-                                case '2':
+                                }
+                                else if(result == '2') {
                                   showToast(
                                       title: "Not found ",
                                       body:
-                                          "Account does not exist please verify your phone number",
+                                      "Account does not exist please verify your phone number",
                                       snackBarType: ContentType.warning,
                                       context: context);
                                   setState(() {
                                     stopLoading();
                                   });
-                                  break;
-                                case '4':
+                                }
+                               else if(result == '4') {
                                   showToast(
                                       title: "Incorrect",
                                       body:
-                                          "Your password or phone is not correct",
+                                      "Your password or phone is not correct",
                                       snackBarType: ContentType.failure,
                                       context: context);
                                   setState(() {
                                     stopLoading();
                                   });
-                                  break;
-                                default:
+                                }
+                               else{
                                   showToast(
                                       title: "Failed",
                                       body:
-                                          "Please check your connection $result",
+                                          "Please check your connection or $result",
                                       snackBarType: ContentType.failure,
                                       context: context);
                                   setState(() {
