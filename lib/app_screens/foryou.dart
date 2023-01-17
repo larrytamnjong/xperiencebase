@@ -174,7 +174,7 @@ class _ForYouState extends State<ForYou> {
                           district:
                               EasyApplyVariables.easyApplyDistrictNames[index],
                           duration: 'Not specified',
-                          imageUrl: 'images/icon.png',
+                          imageUrl: 'images/icon-rounded.png',
                           onButtonPressed: () {
                             showModalBottomSheet(
                               shape: const RoundedRectangleBorder(

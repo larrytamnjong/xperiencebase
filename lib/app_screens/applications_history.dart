@@ -96,7 +96,7 @@ class _ApplicationsHistoryState extends State<ApplicationsHistory> {
                       return AnimatedListView(
                         position: index,
                         child: ApplicationHistoryTile(
-                          imageUrl: 'images/icon.png',
+                          imageUrl: 'images/icon-rounded.png',
                           department: ApplicationHistoryVariables
                               .trainingSectorNames[index],
                           company: ApplicationHistoryVariables
