@@ -91,54 +91,51 @@ class _LoginState extends State<Login> {
                               UserVariables.password = password.text;
                               UserVariables.phone = phone.text;
                               var result = await Api.userLogin();
-                                if(result == '1') {
-                                  if (!mounted) return;
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                          const MainRoute()),
-                                          (Route<dynamic> route) => false);
-                                  setState(() {
-                                    stopLoading();
-                                  });
-                                  displaySnackBar(
-                                      context: context,
-                                      content:
-                                      Text("Welcome ${UserVariables.name}"),
-                                      backgroundColor: kPrimaryColor);
-                                }
-                                else if(result == '2') {
-                                  showToast(
-                                      title: "Not found ",
-                                      body:
-                                      "Account does not exist please verify your phone number",
-                                      snackBarType: ContentType.warning,
-                                      context: context);
-                                  setState(() {
-                                    stopLoading();
-                                  });
-                                }
-                               else if(result == '4') {
-                                  showToast(
-                                      title: "Incorrect",
-                                      body:
-                                      "Your password or phone is not correct",
-                                      snackBarType: ContentType.failure,
-                                      context: context);
-                                  setState(() {
-                                    stopLoading();
-                                  });
-                                }
-                               else{
-                                  showToast(
-                                      title: "Failed",
-                                      body:
-                                          "Please check your connection or $result",
-                                      snackBarType: ContentType.failure,
-                                      context: context);
-                                  setState(() {
-                                    stopLoading();
-                                  });
+                              if (result == '1') {
+                                if (!mounted) return;
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MainRoute()),
+                                    (Route<dynamic> route) => false);
+                                setState(() {
+                                  stopLoading();
+                                });
+                                displaySnackBar(
+                                    context: context,
+                                    content:
+                                        Text("Welcome ${UserVariables.name}"),
+                                    backgroundColor: kPrimaryColor);
+                              } else if (result == '2') {
+                                showToast(
+                                    title: "Not found ",
+                                    body:
+                                        "Account does not exist please verify your phone number",
+                                    snackBarType: ContentType.warning,
+                                    context: context);
+                                setState(() {
+                                  stopLoading();
+                                });
+                              } else if (result == '4') {
+                                showToast(
+                                    title: "Incorrect",
+                                    body:
+                                        "Your password or phone is not correct",
+                                    snackBarType: ContentType.failure,
+                                    context: context);
+                                setState(() {
+                                  stopLoading();
+                                });
+                              } else {
+                                showToast(
+                                    title: "Failed",
+                                    body:
+                                        "Please check your connection or $result",
+                                    snackBarType: ContentType.failure,
+                                    context: context);
+                                setState(() {
+                                  stopLoading();
+                                });
                               }
                             }
                           },
