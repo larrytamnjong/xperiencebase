@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
       appBar: const CustomAppBar(
           title: 'Feeling great today..', fontFamily: 'DancingScript'),
       body: AnimatedSplashScreen(
-        splashIconSize: 90.0,
+        splashIconSize: 130.0,
         splash: 'images/icon.png',
         nextScreen: nextRouteScreen,
         splashTransition: SplashTransition.slideTransition,
