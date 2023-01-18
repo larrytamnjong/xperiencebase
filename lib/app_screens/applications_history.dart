@@ -80,7 +80,7 @@ class _ApplicationsHistoryState extends State<ApplicationsHistory> {
                             height: 30.0,
                           ),
                           Text(
-                            "Hey ${UserVariables.name} we can't find any active applications, please ensure you have an internet connection or submit an application.",
+                            "Hey ${UserVariables.name} we can't find any active applications, please ensure you have submitted an application.",
                             style: const TextStyle(color: Colors.grey),
                             textAlign: TextAlign.center,
                           ),
