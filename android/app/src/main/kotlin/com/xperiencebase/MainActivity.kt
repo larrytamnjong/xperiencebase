@@ -1,4 +1,4 @@
-package com.xperiencebase.xperiencebase
+package com.xperiencebase
 
 import io.flutter.embedding.android.FlutterActivity
 
