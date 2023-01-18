@@ -72,15 +72,15 @@ class _ApplicationsHistoryState extends State<ApplicationsHistory> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 180.0,
-                            width: 180.0,
+                            height: 170.0,
+                            width: 170.0,
                             child: SvgPicture.asset('images/no_data.svg'),
                           ),
                           const SizedBox(
                             height: 30.0,
                           ),
                           Text(
-                            "Hey ${UserVariables.name} we can't find any active applications, please ensure you have an internet connection",
+                            "Hey ${UserVariables.name} we can't find any active applications, please ensure you have an internet connection or submit an application.",
                             style: const TextStyle(color: Colors.grey),
                             textAlign: TextAlign.center,
                           ),
