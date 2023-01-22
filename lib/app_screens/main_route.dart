@@ -30,7 +30,7 @@ class _MainRouteState extends State<MainRoute> {
   ];
   void checkAppVersion() async {
     String appVersion = await Api.getAppVersion();
-    if (appVersion != '1.0.0') {
+    if (appVersion != '1.0.1') {
       if (!mounted) return;
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const ErrorScreen()),

@@ -93,13 +93,12 @@ class PaymentRegisterVariables {
   static String? selectedTotalPaymentAmount;
   static String? paymentReference;
   static List<String> companyNames = [
-    'Higher Teachers Training College (ENS Bambili)',
-    'HICM',
+    'Higher Teachers Training College (ENS Bambili)'
 
   ];
-  static List<String> companyIDs = ['2', '3'];
-  static List<String> productIDs = ['2', '3'];
-  static List<String> paymentAmounts = ['2000', '1500'];
+  static List<String> companyIDs = ['2'];
+  static List<String> productIDs = ['2'];
+  static List<String> paymentAmounts = ['2000'];
 }
 
 class PaymentRegisterHistoryVariables{

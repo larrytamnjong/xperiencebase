@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 import 'package:xperiencebase/widgets_functions/functions/pdf_maker.dart';
 import 'package:xperiencebase/widgets_functions/widgets/appbar.dart';
@@ -13,7 +13,7 @@ class ViewPdfReceipt extends StatefulWidget {
 
 class _ViewPdfReceiptState extends State<ViewPdfReceipt> {
   void _openPath(String path) async {
-    OpenFile.open(path);
+    OpenFilex.open(path);
   }
   @override
   Widget build(BuildContext context) {

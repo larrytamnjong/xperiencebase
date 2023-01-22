@@ -75,7 +75,7 @@ class _AccountState extends State<Account> {
                   context: context,
                   type: QuickAlertType.info,
                   text:
-                      'You can long press the deposit or withdraw button to navigate and view credit or deposit logs',
+                      'You can long press the deposit or withdraw button to navigate and view credit or debit logs',
                   onConfirmBtnTap: () {
                     Navigator.pop(context);
                   });
