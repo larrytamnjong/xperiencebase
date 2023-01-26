@@ -57,7 +57,7 @@ class _ConfirmApplicationState extends State<ConfirmApplication> {
                       text: 'Submit',
                       buttonColor: kSecondaryColor,
                       onPressed: () async {
-                        if (int.parse(UserVariables.accountBalance!) >= 5000) {
+                        if ((int.parse(UserVariables.accountBalance!) >= 5000) || (TrainingApplicationVariables.selectedCompanyName == 'CivilSalt' && int.parse(UserVariables.accountBalance!) >= 2000 )) {
                           setState(() {
                             _isSavingApplication = true;
                           });
@@ -107,7 +107,7 @@ class _ConfirmApplicationState extends State<ConfirmApplication> {
                           showToast(
                               title: "Failed",
                               body:
-                                  "You need to have at least 5000 XAF before you can apply",
+                                  "You need to have at least 5000 XAF or 2000 XAF for CivilSalt programs before you can apply",
                               snackBarType: ContentType.failure,
                               context: context);
                         }

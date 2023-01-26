@@ -44,7 +44,7 @@ class _ForYouState extends State<ForYou> {
   }
 
   void sendForYouApplication(int index) async {
-    if (int.parse(UserVariables.accountBalance!) >= 5000) {
+    if ((int.parse(UserVariables.accountBalance!) >= 5000) || (EasyApplyVariables.easyApplyCompanyNames[index] == 'CivilSalt' && int.parse(UserVariables.accountBalance!) >= 2000 )) {
       displaySnackBar(
           context: context,
           content: const Text("Please wait sending request"),
@@ -89,7 +89,7 @@ class _ForYouState extends State<ForYou> {
     } else {
       showToast(
           title: "Failed",
-          body: "You need to have at least 5000 XAF before you can apply.",
+          body: "You need to have at least 5000 XAF before you can apply or 2000 XAF for CivilSalt programs.",
           snackBarType: ContentType.failure,
           context: context);
     }
