@@ -22,10 +22,10 @@ class _MainRouteState extends State<MainRoute> {
   PageController pageController = PageController();
 
   List<StatefulWidget> pages = [
-    const Account(),
-    const Apply(),
     const ForYou(),
+    const Apply(),
     const ApplicationsHistory(),
+    const Account(),
     const Profile(),
   ];
   void checkAppVersion() async {
@@ -65,24 +65,24 @@ class _MainRouteState extends State<MainRoute> {
           type: BottomNavigationBarType.shifting,
           items: const [
             BottomNavigationBarItem(
-              label: 'Accounts',
-              icon: Icon(Icons.account_balance_rounded),
+              label: 'For you',
+              icon: Icon(Icons.cases_rounded),
             ),
             BottomNavigationBarItem(
               label: 'Apply',
               icon: Icon(Icons.send_rounded),
             ),
             BottomNavigationBarItem(
-              label: 'For you',
-              icon: Icon(Icons.cases_rounded),
-            ),
-            BottomNavigationBarItem(
               label: 'Status',
               icon: Icon(Icons.history),
             ),
             BottomNavigationBarItem(
-              label: 'Profile',
-              icon: Icon(Icons.person),
+              label: 'Accounts',
+              icon: Icon(Icons.account_balance_rounded),
+            ),
+            BottomNavigationBarItem(
+              label: 'More',
+              icon: Icon(Icons.more_rounded),
             ),
           ],
           currentIndex: selectedPageIndex,

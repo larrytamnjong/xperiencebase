@@ -7,6 +7,7 @@ import 'package:xperiencebase/widgets_functions/widgets/padding.dart';
 import 'package:xperiencebase/widgets_functions/functions/pagenavigation.dart';
 import 'package:xperiencebase/app_screens/application_screens/select_option.dart';
 
+
 class Apply extends StatefulWidget {
   const Apply({Key? key}) : super(key: key);
 
@@ -15,6 +16,7 @@ class Apply extends StatefulWidget {
 }
 
 class _ApplyState extends State<Apply> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

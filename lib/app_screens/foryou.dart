@@ -13,6 +13,8 @@ import 'package:xperiencebase/widgets_functions/functions/snackbar_menus.dart';
 import 'package:xperiencebase/widgets_functions/functions/api.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
+import 'package:xperiencebase/widgets_functions/functions/account_brain.dart';
+
 class ForYou extends StatefulWidget {
   const ForYou({Key? key}) : super(key: key);
 
@@ -44,17 +46,28 @@ class _ForYouState extends State<ForYou> {
   }
 
   void sendForYouApplication(int index) async {
-    if ((int.parse(UserVariables.accountBalance!) >= 5000) || (EasyApplyVariables.easyApplyCompanyNames[index] == 'CivilSalt' && int.parse(UserVariables.accountBalance!) >= 2000 )) {
-      displaySnackBar(
-          context: context,
-          content: const Text("Please wait sending request"),
-          backgroundColor: Colors.orange);
-      TrainingApplicationVariables.selectedOptionName = EasyApplyVariables.easyApplyOptionNames[index];
-      TrainingApplicationVariables.selectedSectorName = EasyApplyVariables.easyApplySectorNames[index];
-      TrainingApplicationVariables.selectedCityName = EasyApplyVariables.easyApplyCityNames[index];
-      TrainingApplicationVariables.selectedDistrictName = EasyApplyVariables.easyApplyDistrictNames[index];
-      TrainingApplicationVariables.selectedCompanyName = EasyApplyVariables.easyApplyCompanyNames[index];
-      TrainingApplicationVariables.selectedCompanyId = EasyApplyVariables.easyApplyCompanyIDs[index];
+    await  getAccountBalance();
+    if ((int.parse(UserVariables.accountBalance!) >= 5000) ||
+        (EasyApplyVariables.easyApplyCompanyNames[index] == 'CivilSalt' &&
+            int.parse(UserVariables.accountBalance!) >= 2000)) {
+      if(mounted) {
+        displaySnackBar(
+            context: context,
+            content: const Text("Please wait sending request"),
+            backgroundColor: Colors.orange);
+      }
+      TrainingApplicationVariables.selectedOptionName =
+          EasyApplyVariables.easyApplyOptionNames[index];
+      TrainingApplicationVariables.selectedSectorName =
+          EasyApplyVariables.easyApplySectorNames[index];
+      TrainingApplicationVariables.selectedCityName =
+          EasyApplyVariables.easyApplyCityNames[index];
+      TrainingApplicationVariables.selectedDistrictName =
+          EasyApplyVariables.easyApplyDistrictNames[index];
+      TrainingApplicationVariables.selectedCompanyName =
+          EasyApplyVariables.easyApplyCompanyNames[index];
+      TrainingApplicationVariables.selectedCompanyId =
+          EasyApplyVariables.easyApplyCompanyIDs[index];
       TrainingApplicationVariables.school = 'Not specified';
       TrainingApplicationVariables.startDate = 'Not specified';
       TrainingApplicationVariables.endDate = 'Not specified';
@@ -62,39 +75,58 @@ class _ForYouState extends State<ForYou> {
 
       var result = await TrainingApplicationApi.saveApplication();
       if (result == '1') {
-        QuickAlert.show(
-            barrierDismissible: false,
+        if (mounted) {
+          QuickAlert.show(
+              barrierDismissible: false,
+              confirmBtnColor: kSecondaryColor,
+              context: context,
+              type: QuickAlertType.success,
+              text: 'Application sent successfully, ${UserVariables.name}',
+              onConfirmBtnTap: () {
+                Navigator.pop(context);
+              });
+        }
+      } else if (result == '0' || result == null) {
+        if (mounted) {
+          QuickAlert.show(
             confirmBtnColor: kSecondaryColor,
             context: context,
-            type: QuickAlertType.success,
-            text: 'Application sent successfully, ${UserVariables.name}',
-            onConfirmBtnTap: () {
-              Navigator.pop(context);
-            });
-      } else if (result == '0' || result == null) {
-        QuickAlert.show(
-          confirmBtnColor: kSecondaryColor,
-          context: context,
-          type: QuickAlertType.error,
-          title: 'Oops...',
-          text: 'Sorry, something went wrong',
-        );
+            type: QuickAlertType.error,
+            title: 'Oops...',
+            text: 'Sorry, something went wrong',
+          );
+        }
       } else {
+        if (mounted) {
+          showToast(
+              title: "Failed",
+              body: "Please check your connection or $result",
+              snackBarType: ContentType.failure,
+              context: context);
+        }
+      }
+    } else {
+      if(mounted) {
         showToast(
             title: "Failed",
-            body: "Please check your connection or $result",
+            body:
+            "You need to have at least 5000 XAF before you can apply or 2000 XAF for CivilSalt programs.",
             snackBarType: ContentType.failure,
             context: context);
       }
-    } else {
-      showToast(
-          title: "Failed",
-          body: "You need to have at least 5000 XAF before you can apply or 2000 XAF for CivilSalt programs.",
-          snackBarType: ContentType.failure,
-          context: context);
     }
   }
-
+  getAccountBalance() async {
+    DepositVariables.totalDeposit = await Api.userTotalDeposit();
+    WithdrawalVariables.totalWithdrawal = await Api.userTotalWithdrawal();
+    UserVariables.accountBalance = calculateBalance(
+        DepositVariables.totalDeposit, WithdrawalVariables.totalWithdrawal);
+    if (mounted) {
+      setState(() {
+        UserVariables.accountBalance;
+      });
+    }
+  }
   @override
   void initState() {
     getEasyApplyPost();
@@ -165,8 +197,7 @@ class _ForYouState extends State<ForYou> {
                           sector:
                               EasyApplyVariables.easyApplySectorNames[index],
                           company: EasyApplyVariables
-                              .easyApplyCompanyNames[index]
-                              .toUpperCase(),
+                              .easyApplyCompanyNames[index],
                           date: EasyApplyVariables.easyApplyDateOfPosts[index],
                           option:
                               EasyApplyVariables.easyApplyOptionNames[index],

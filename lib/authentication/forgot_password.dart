@@ -28,7 +28,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               onPressed: () {
                 launchWhatsApp(context: context);
               },
-              icon: const Icon(Icons.whatsapp_outlined)),
+              icon: const Icon(Icons.chat)),
           const SizedBox(width: 12.0)
         ],
       ),

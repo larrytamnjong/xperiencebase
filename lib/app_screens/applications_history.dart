@@ -100,8 +100,7 @@ class _ApplicationsHistoryState extends State<ApplicationsHistory> {
                           department: ApplicationHistoryVariables
                               .trainingSectorNames[index],
                           company: ApplicationHistoryVariables
-                              .trainingCompanyNames[index]
-                              .toUpperCase(),
+                              .trainingCompanyNames[index],
                           date: ApplicationHistoryVariables
                               .trainingApplicationDates[index],
                           status: ApplicationHistoryVariables

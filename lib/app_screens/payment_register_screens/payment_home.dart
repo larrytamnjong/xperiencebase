@@ -123,15 +123,17 @@ class _PaymentHomeState extends State<PaymentHome> {
                             if (int.parse(PaymentRegisterVariables
                                     .selectedTotalPaymentAmount!) >
                                 int.parse(UserVariables.accountBalance!)) {
-                              showToast(
-                                  title: "Failed",
-                                  body:
-                                      "You need to have at least $totalAmountToPay XAF before you can pay",
-                                  snackBarType: ContentType.failure,
-                                  context: context);
-                              setState(() {
-                                _isSaving = false;
-                              });
+                              if(mounted) {
+                                showToast(
+                                    title: "Failed",
+                                    body:
+                                    "You need to have at least $totalAmountToPay XAF before you can pay",
+                                    snackBarType: ContentType.failure,
+                                    context: context);
+                                setState(() {
+                                  _isSaving = false;
+                                });
+                              }
                             } else {
                               setState(() {
                                 _isSaving = true;
@@ -139,27 +141,31 @@ class _PaymentHomeState extends State<PaymentHome> {
                               var result1 = await Api.savePaymentRegister();
                               var result2 = await Api.saveWithdrawal();
                               if (result1 == '1' && result2 == '1') {
-                                showToast(
-                                    title: "Success",
-                                    body:
-                                        "Payment has been registered successfully",
-                                    snackBarType: ContentType.success,
-                                    context: context);
-                                setState(() {
-                                  _isSaving = false;
-                                });
-                                changePage(
-                                    context: context,
-                                    page: const PaymentHistory());
+                                if(mounted) {
+                                  showToast(
+                                      title: "Success",
+                                      body:
+                                      "Payment has been registered successfully",
+                                      snackBarType: ContentType.success,
+                                      context: context);
+                                  setState(() {
+                                    _isSaving = false;
+                                  });
+                                  changePage(
+                                      context: context,
+                                      page: const PaymentHistory());
+                                }
                               } else {
                                 setState(() {
                                   _isSaving = false;
                                 });
-                                showToast(
-                                    title: "Ops",
-                                    body: "Something went wrong",
-                                    snackBarType: ContentType.warning,
-                                    context: context);
+                                if (mounted) {
+                                  showToast(
+                                      title: "Ops",
+                                      body: "Something went wrong",
+                                      snackBarType: ContentType.warning,
+                                      context: context);
+                                }
                               }
                             }
                           }
